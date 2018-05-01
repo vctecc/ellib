@@ -1,1 +1,2 @@
-*.cpp.autosave
+*.autosave
+main.pro.*
