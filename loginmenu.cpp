@@ -5,24 +5,18 @@
 LoginMenu::LoginMenu(QWidget *parent)
     : QWidget(parent)
 {
-    userLabel = new QLabel(tr("User name:"));
-    passwdLabel = new QLabel(tr("Password:"));
-    databaseLabel  = new QLabel(tr("DataBase"));
 
     userLineEdit = new QLineEdit();
     passwdLineEdit = new QLineEdit();
     passwdLineEdit->setEchoMode(QLineEdit::Password);
     databaseLineEdit = new QLineEdit();
 
-    userLabel->setBuddy(userLineEdit);
-    passwdLabel->setBuddy(passwdLineEdit);
-    databaseLabel->setBuddy(passwdLineEdit);
 
-    enterButton = new QPushButton(tr("Enter"));
+    enterButton = new QPushButton(tr("Войти"));
     enterButton->setDefault(true);
     enterButton->setEnabled(false);
 
-    quitButton = new QPushButton(tr("Quit"));
+    quitButton = new QPushButton(tr("Отмена"));
 
     buttonBox = new QDialogButtonBox;
     buttonBox->addButton(enterButton, QDialogButtonBox::ActionRole);
@@ -39,17 +33,17 @@ LoginMenu::LoginMenu(QWidget *parent)
             this, SLOT(enableEnter()));
 
 
-    QGridLayout *mainLayout = new QGridLayout;
-    mainLayout->addWidget(userLabel, 0, 0);
+    QGridLayout *mainLayout = new QGridLayout();
+    mainLayout->addWidget(new QLabel(tr("Пользователь:")), 0, 0);
     mainLayout->addWidget(userLineEdit, 0, 1);
-    mainLayout->addWidget(passwdLabel, 1, 0);
+    mainLayout->addWidget(new QLabel(tr("Пороль:")), 1, 0);
     mainLayout->addWidget(passwdLineEdit, 1, 1);
-    mainLayout->addWidget(databaseLabel, 2, 0);
+    mainLayout->addWidget(new QLabel(tr("База данных:")), 2, 0);
     mainLayout->addWidget(databaseLineEdit, 2, 1);
     mainLayout->addWidget(buttonBox, 3, 0, 1, 2);
     setLayout(mainLayout);
 
-    setWindowTitle(tr("Connect to DB"));
+    setWindowTitle(tr("Подключение к БД"));
     userLineEdit->setFocus();
 }
 
@@ -59,9 +53,17 @@ void LoginMenu::enableEnter()
     enterButton->setEnabled(enable);
 }
 
+bool LoginMenu::checkUser()
+{
+    return true;
+}
+
 void LoginMenu::connectLibrary()
 {
-    client = new LibraryClient();
-    client->show();
-
+    if (this->checkUser())
+    {
+        client = new LibraryClient();
+        this->close();
+        client->show();
+    }
 }

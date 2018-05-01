@@ -21,12 +21,10 @@ public:
 
 private slots:
     void enableEnter();
+    bool checkUser();
     void connectLibrary();
 
 private:
-    QLabel *userLabel;
-    QLabel *passwdLabel;
-    QLabel *databaseLabel;
 
     QLineEdit *userLineEdit;
     QLineEdit *passwdLineEdit;
