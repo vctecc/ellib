@@ -1,18 +1,28 @@
 #include "newdocwindow.h"
 #include <QtWidgets>
 
-NewDocWindow::NewDocWindow(QWidget *parent)
+NewDocWindow::NewDocWindow(const QStringList &sources,
+                           const QStringList &processes,
+                           const QStringList &categories,
+                           QWidget *parent)
 {
     setWindowTitle(tr("Ввод нового докуента"));
 
     //Создание полей ввода
     sourceComboBox = new QComboBox;
-    sourceComboBox->setEditable(true);
     processComboBox = new QComboBox;
-    processComboBox->setEditable(true);
     categoryComboBox = new QComboBox;
-    categoryComboBox->setEditable(true);
     nameEdit = new QLineEdit;
+
+    sourceComboBox->setEditable(true);
+    processComboBox->setEditable(true);
+    categoryComboBox->setEditable(true);
+
+    sourceComboBox->setModel(new QStringListModel(sources, this));
+    processComboBox->setModel(new QStringListModel(processes, this));
+    categoryComboBox->setModel(new QStringListModel(categories, this));
+
+
 
     QGridLayout *layout = new QGridLayout;
 

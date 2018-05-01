@@ -20,7 +20,10 @@ class NewDocWindow : public QWidget
     Q_OBJECT
 
 public:
-    NewDocWindow(QWidget *parent = 0);
+    NewDocWindow(const QStringList &sources,
+                 const QStringList &processes,
+                 const QStringList &categories,
+                 QWidget *parent = 0);
 
 private:
 
