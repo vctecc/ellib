@@ -3,10 +3,33 @@
 
 #include <QWidget>
 
-class newdocwindow
+QT_BEGIN_NAMESPACE
+class QLabel;
+class QLineEdit;
+class QPushButton;
+class QGroupBox;
+class QComboBox;
+class QAction;
+class QGridLayout;
+class QDialogButtonBox;
+class QHBoxLayout;
+QT_END_NAMESPACE
+
+class NewDocWindow : public QWidget
 {
+    Q_OBJECT
+
 public:
-    newdocwindow();
+    NewDocWindow(QWidget *parent = 0);
+
+private:
+
+    QComboBox *sourceComboBox;
+    QComboBox *processComboBox;
+    QComboBox *categoryComboBox;
+    QLineEdit *nameEdit;
+
+
 };
 
 #endif // NEWDOCWINDOW_H
