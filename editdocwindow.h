@@ -2,6 +2,7 @@
 #define EDITDOCWINDOW_H
 
 #include <QWidget>
+#include "setting.h"
 
 QT_BEGIN_NAMESPACE
 class QDialogButtonBox;
@@ -17,35 +18,37 @@ QT_END_NAMESPACE
 class EditDocWindow : public QWidget
 {
      Q_OBJECT
+
 public:
-    EditDocWindow(QWidget *parent = 0);
+    EditDocWindow(const QStringList &sources,
+                  const QStringList &processes,
+                  const QStringList &categories,
+                  const QStringList &status,
+                  QWidget *parent = 0);
+    //~EditDocWindow();
+
+    void setA(const QStringList &source);
 
 private:
     void createMasterGroupBox();
-    void createAuditGroupBox();
-    void createFileGroupBox();
-
     QLineEdit *regNumEdit;
+    QComboBox *sourceComboBox;
+    QComboBox *processComboBox;
+    QComboBox *categoryComboBox;
     QLineEdit *nameEdit;
+
+    QComboBox *introDateComboBox;
+    QLineEdit *oderEdit;
+    QComboBox *approvalDateComboBox;
+    QComboBox *auditDateComboBox;
+    QComboBox *statusComboBox;
+
     QLineEdit *authorEdit;
     QLineEdit *addRegNumEdit;
     QLineEdit *fileNameEdit;
     QLineEdit *applayEdit;
-    QLineEdit *masterEdit;
+    //QLineEdit *masterEdit;
 
-    QComboBox *sourceComboBox;
-    QComboBox *processComboBox;
-    QComboBox *classComboBox;
-    QComboBox *approvalDateComboBox;
-    QComboBox *introDateComboBox;
-    QComboBox *auditDateComboBox;
-    QComboBox *oderComboBox;
-    QComboBox *statusComboBox;
-    QGroupBox *topGroupBox;
-    QGroupBox *midGroupBox;
-    QGroupBox *botGroupBox;
-
-    QDialogButtonBox *buttonBox;
 };
 
 #endif // EDITDOCWINDOW_H
