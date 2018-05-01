@@ -4,15 +4,23 @@
 #include <QObject>
 #include <QWidget>
 
-class setting : public QWidget
+
+QT_BEGIN_NAMESPACE
+class QStringListModel;
+QT_END_NAMESPACE
+
+class Setting : public QWidget
 {
     Q_OBJECT
+
 public:
-    explicit setting(QWidget *parent = 0);
+   Setting();
+   QStringListModel *sourceModel;
+   QStringListModel *processModel;
+   QStringListModel *categoryModel;
+   QStringListModel *statusModel;
+   QStringList *status;
 
-signals:
-
-public slots:
 };
 
 #endif // SETTING_H
