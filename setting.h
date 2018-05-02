@@ -7,6 +7,7 @@
 
 QT_BEGIN_NAMESPACE
 class QStringListModel;
+class QStringList;
 QT_END_NAMESPACE
 
 class Setting : public QWidget
@@ -15,11 +16,16 @@ class Setting : public QWidget
 
 public:
    Setting();
-   QStringListModel *sourceModel;
-   QStringListModel *processModel;
-   QStringListModel *categoryModel;
-   QStringListModel *statusModel;
+
+   QStringList  *titels;
+
+   QStringList *sources;
    QStringList *status;
+   QStringList *processes;
+   QStringList *categories;
+
+
+
 
 };
 

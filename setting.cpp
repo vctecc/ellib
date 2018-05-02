@@ -4,19 +4,18 @@
 
 Setting::Setting()
 {
-    QStringList sources;
-    sources << tr("Внешний") << tr("Внутренний");
-    sourceModel = new QStringListModel(sources, this);
 
-    QStringList processes;
-    processes << tr("Производство") << tr("Менеджмент");
-    processModel = new QStringListModel(processes, this);
 
-    QStringList categories;
-    categories << tr("Производство") << tr("Менеджмент");
-    categoryModel = new QStringListModel(categories, this);
 
-    QStringList status;
-    status << tr("ГОСТ") << tr("Документы предприятия");
-    statusModel = new QStringListModel(status, this);
+     sources = new QStringList;
+    //sources << tr("Внешний") << tr("Внутренний");
+
+    processes = new QStringList;
+    //processes << tr("Производство") << tr("Менеджмент");
+
+    categories = new QStringList;
+    //categories << tr("Производство") << tr("Менеджмент");
+
+    status = new QStringList;
+    //status << tr("ГОСТ") << tr("Документы предприятия");
 }
