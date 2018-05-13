@@ -102,7 +102,7 @@ void LibraryClient::createUI()
     deleteButton->setText("Удалить документ");
 
     connect(newButton, SIGNAL(clicked()), this, SLOT(newDocument()));
-    //connect(editButton, SIGNAL(clicked()), this, SLOT(editDocument()));
+    connect(editButton, SIGNAL(clicked()), this, SLOT(slotEditDocument(QModelIndex)));
     connect(deleteButton, SIGNAL(clicked()), this, SLOT(deleteDocument()));
 
     layout = new QHBoxLayout;
@@ -181,23 +181,6 @@ void LibraryClient::slotUpdateModels()
     model->select();
 }
 
-void LibraryClient::editDocument()
-{
-
-    QStringList sources;
-    //QStringList processes;
-    QStringList categories;
-    QStringList status;
-
-    sources << tr("Внешний") << tr("Внутренний");
-    //processes << tr("Производство") << tr("Менеджмент");
-    categories << tr("ГОСТ") << tr("Документы предприятия");
-    status << tr("Действующий") << tr("Отменённый");
-
-   // EditDocWindow *editor = new EditDocWindow(sources, processes, categories, status);
-    //editor->show();
-}
-
 void LibraryClient::slotEditDocument(QModelIndex index)
 {
     QStringList sourcesList;
@@ -236,6 +219,18 @@ void LibraryClient::filterTurnOff()
 
 void LibraryClient::extendFilter()
 {
-    FilterWindow *filter = new FilterWindow();
+    QStringList sourcesList;
+    QStringList processesList;
+    QStringList categoriesList;
+    QStringList statusList;;
+
+
+    sourcesList << sources->split(',');
+    processesList << processes->split(',');
+    categoriesList << categories->split(',');
+    statusList << status->split(',');
+
+    FilterWindow *filter = new FilterWindow(sourcesList, processesList,
+                                            categoriesList, statusList);
     filter->show();
 }

@@ -28,7 +28,6 @@ public:
 private slots:
 
     void newDocument();
-    void editDocument();
     void slotUpdateModels();
     void slotEditDocument(QModelIndex index);
     void deleteDocument();
@@ -43,6 +42,7 @@ private:
     DataBase *db;
     QSqlTableModel *model;
     Setting *setting;
+
     //от это костыля нужно избавиться
     QString *sources;
     QString *processes;

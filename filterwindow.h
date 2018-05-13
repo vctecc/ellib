@@ -18,7 +18,11 @@ class FilterWindow : public QWidget
 {
     Q_OBJECT
 public:
-    FilterWindow(QWidget *parent = 0);
+    FilterWindow(const QStringList &sources,
+                 const QStringList &processes,
+                 const QStringList &categories,
+                 const QStringList &status,
+                 QWidget *parent = 0);
 
 private slots:
     void clearFilters();

@@ -1,39 +1,56 @@
 #include "filterwindow.h"
 #include <QtWidgets>
 
-FilterWindow::FilterWindow(QWidget *parent)
+FilterWindow::FilterWindow(const QStringList &sources,
+                           const QStringList &processes,
+                           const QStringList &categories,
+                           const QStringList &status,
+                           QWidget *parent)
 {
     setWindowTitle(tr("Фильтры"));
     createFilters();
+
+    //Задание моделей
+    sourceComboBox->setModel(new QStringListModel(sources, this));
+    processComboBox->setModel(new QStringListModel(processes, this));
+    classComboBox->setModel(new QStringListModel(categories, this));
+    statusComboBox->setModel(new QStringListModel(status, this));
 }
 
 void FilterWindow::createFilters()
 {
+    QString timeMask = "99.99.99";
+
     //Создание полей ввода
     sourceComboBox = new QComboBox;
     sourceComboBox->setEditable(true);
+
+
     processComboBox = new QComboBox;
     processComboBox->setEditable(true);
+
     classComboBox = new QComboBox;
     classComboBox->setEditable(true);
+
     statusComboBox = new QComboBox;
     statusComboBox->setEditable(true);
+
     authorComboBox = new QComboBox;
     authorComboBox->setEditable(true);
 
     approvalFromComboBox = new QLineEdit;
-    approvalFromComboBox->setInputMask("99.99.99");
+    approvalFromComboBox->setInputMask(timeMask);
     approvalFromComboBox->setMaxLength(8);
     approvalToComboBox = new QLineEdit;
-    approvalToComboBox->setInputMask("99.99.99");
+    approvalToComboBox->setInputMask(timeMask);
     introFromComboBox = new QLineEdit;
-    introFromComboBox->setInputMask("99.99.99");
+    introFromComboBox->setInputMask(timeMask);
     introToComboBox = new QLineEdit;
-    introToComboBox->setInputMask("99.99.99");
+    introToComboBox->setInputMask(timeMask);
     auditFromComboBox = new QLineEdit;
-    auditFromComboBox->setInputMask("99.99.99");
+    auditFromComboBox->setInputMask(timeMask);
     auditToComboBox = new QLineEdit;
-    auditToComboBox->setInputMask("99.99.99");
+    auditToComboBox->setInputMask(timeMask);
 
     QGridLayout *layout = new QGridLayout;
 
